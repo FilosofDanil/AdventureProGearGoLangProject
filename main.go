@@ -12,7 +12,7 @@ func main() {
 	e := echo.New()
 	e.GET("", HelloWorld)
 	go provideLink()
-	if err := e.Start("adventureprogeargolangproject-production.up.railway.app:8080"); err != nil {
+	if err := e.Start(":8080"); err != nil {
 		log.Fatal(err)
 	}
 }
@@ -23,5 +23,5 @@ func HelloWorld(ctx echo.Context) error {
 
 func provideLink() {
 	time.Sleep(1 * time.Second)
-	fmt.Println("Link: adventureprogeargolangproject-production.up.railway.app:8080")
+	fmt.Println("Link: 104.196.232.237:8080")
 }

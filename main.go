@@ -12,7 +12,7 @@ func main() {
 	e := echo.New()
 	e.GET("", HelloWorld)
 	go provideLink()
-	if err := e.Start(":8080"); err != nil {
+	if err := e.Start("0.0.0.0:8080"); err != nil {
 		log.Fatal(err)
 	}
 }

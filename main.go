@@ -12,7 +12,7 @@ func main() {
 	e := echo.New()
 	e.GET("/", HelloWorld)
 	go provideLink()
-	if err := e.StartAutoTLS(":8443"); err != nil {
+	if err := e.StartAutoTLS("0.0.0.0:8443"); err != nil {
 		log.Fatal(err)
 	}
 }

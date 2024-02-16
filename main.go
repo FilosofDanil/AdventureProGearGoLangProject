@@ -10,7 +10,7 @@ import (
 
 func main() {
 	e := echo.New()
-	e.GET("", HelloWorld)
+	e.GET("/", HelloWorld)
 	go provideLink()
 	if err := e.StartAutoTLS(":8443"); err != nil {
 		log.Fatal(err)

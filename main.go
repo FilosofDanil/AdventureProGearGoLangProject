@@ -2,24 +2,31 @@ package main
 
 import (
 	"fmt"
-	"github.com/labstack/echo/v4"
+	"io"
 	"log"
 	"net/http"
 	"time"
 )
 
 func main() {
-	e := echo.New()
-	e.GET("/", HelloWorld)
-	go provideLink()
+	http.HandleFunc("/", HelloWorld)
 
-	if err := e.StartAutoTLS(""); err != nil {
+	err := http.ListenAndServe(":3333", nil)
+	if err != nil {
 		log.Fatal(err)
 	}
+	//e := echo.New()
+	//e.GET("", HelloWorld)
+	//go provideLink()
+	//s := http.Server
+	//if err := e.StartServer(":8080"); err != nil {
+	//	log.Fatal(err)
+	//}
 }
 
-func HelloWorld(ctx echo.Context) error {
-	return ctx.JSON(http.StatusOK, "Hello World!")
+func HelloWorld(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("got / request\n")
+	io.WriteString(w, "Hello world!\n")
 }
 
 func provideLink() {

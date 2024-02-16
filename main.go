@@ -5,13 +5,16 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 	"time"
 )
 
 func main() {
 	http.HandleFunc("/", HelloWorld)
 
-	err := http.ListenAndServe(":3333", nil)
+	port := os.Getenv("PORT")
+
+	err := http.ListenAndServe(port, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
